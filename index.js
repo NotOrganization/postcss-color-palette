@@ -181,7 +181,7 @@ module.exports = function plugin (opts) {
     if (webcolors.hasOwnProperty(opts.palette)) {
       opts.palette = webcolors[opts.palette];
     } else {
-      throw new Error('Unknown webcolors palette: '' + opts.palette + ''');
+      throw new Error('Unknown webcolors palette: "' + opts.palette + '"');
     }
   }
 
