@@ -11,12 +11,17 @@ var PROPS = [
   'background-color',
   'border',
   'border-color',
+  'border-top-color',
+  'border-right-color',
+  'border-bottom-color',
+  'border-left-color',
   'outline',
   'outline-color',
   'text-shadow',
   'box-shadow',
   'fill',
-  '@mixin'
+  '@mixin',
+  '$color'
 ];
 
 // CSS color keywords to replace
