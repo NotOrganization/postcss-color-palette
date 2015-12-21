@@ -15,7 +15,8 @@ var PROPS = [
   'outline-color',
   'text-shadow',
   'box-shadow',
-  'fill'
+  'fill',
+  '@mixin'
 ];
 
 // CSS color keywords to replace
