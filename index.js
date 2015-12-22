@@ -6,22 +6,19 @@ var DEFAULTS = webcolors.mrmrs;
 // All props that use the <color> data type
 // https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#See_also
 var PROPS = [
-  'color',
-  'background',
-  'background-color',
-  'border',
-  'border-color',
-  'border-top-color',
-  'border-right-color',
-  'border-bottom-color',
-  'border-left-color',
-  'outline',
-  'outline-color',
-  'text-shadow',
-  'box-shadow',
-  'fill',
-  '@mixin',
-  '$color'
+  /color/,
+  /background/,
+  /background-color/,
+  /border/,
+  /border-color/,
+  /border-(top|right|bottom|left)-color/,
+  /outline/,
+  /outline-color/,
+  /text-shadow/,
+  /box-shadow/,
+  /fill/,
+  /@mixin/,
+  /^\$.+$/
 ];
 
 // CSS color keywords to replace
@@ -209,9 +206,13 @@ module.exports = function plugin (opts) {
     css.eachDecl(function transformDecl (decl) {
       // Check if the decl is of a color-related property and make sure
       // it has a value containing a replaceable color
-      if (PROPS.indexOf(decl.prop) === -1 ||
-          !decl.value ||
-          !KEYWORD_REGEX.test(decl.value)) {
+      if (
+        !decl.value ||
+        !KEYWORD_REGEX.test(decl.value) ||
+        !(PROPS.some(function (prop) {
+          return prop.test(decl.prop);
+        }))
+      ) {
         return;
       }
       // Transform!
